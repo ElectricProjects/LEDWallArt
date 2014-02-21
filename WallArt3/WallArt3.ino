@@ -25,22 +25,18 @@ void setup() {
 
 void loop() { 
   currentMillis=millis();
-  int r=random(75);
-  int r2 = random(50);
-  ledRandom(strip.Color(0,r2,r),50);
+  int blue=random(75);
+  int green = random(50);
+  int red=0;
+  ledRandom(strip.Color(red,green,blue),50);
 }
 
 void ledRandom(uint32_t c, uint8_t wait){
- // Serial.println("In Fade2");
   if(currentMillis - previousMillis > wait) {
     previousMillis = currentMillis; 
     do {
       int rand = random(0,63);
       num=rand;
-      Serial.print("in do R = ");
-      Serial.println(rand);
-      Serial.print("count = ");
-      Serial.print(arrayCount);
     }
     while (ledArray[num] == 1);
     ledArray[num]=1;
@@ -49,10 +45,7 @@ void ledRandom(uint32_t c, uint8_t wait){
     delay(25);
     strip.show(); // show change in pixel
   }
- /* for(int i =0; i>=64; i++){
-    if(ledArray[i] == 1)
-      arrayCount++;
-  }*/
+
   if (arrayCount>=63){
      Serial.println("Array 64 +............");
       arrayCount=0;
